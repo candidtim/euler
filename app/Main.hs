@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import Problem2
+import Problem3
 
 main :: IO ()
-main = putStrLn $ show solveProblem2
+main = putStrLn $ show solveProblem3
