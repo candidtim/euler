@@ -4,4 +4,4 @@ import Lib
 import Problem4
 
 main :: IO ()
-main = putStrLn $ show solveProblem4
+main = putStrLn $ show $ solveProblem4 999

@@ -9,10 +9,9 @@ module Problem4
 import Data.List as List
 
 
-solveProblem4 :: Int
-solveProblem4 =
-  let n = 999
-      multiples = [x*y | x <- [1..n], y <- [1..n]]
+solveProblem4 :: Int -> Int
+solveProblem4 n =
+  let multiples = [x*y | x <- [1..n], y <- [1..n]]
    in head . filter palindrome . reverse . List.sort $ multiples
 
 palindrome :: Int -> Bool
