@@ -3,6 +3,7 @@ module Problem3
     , primes
     ) where
 
+import Lib (factor)
 
 solveProblem3 :: Int
 solveProblem3 =
@@ -15,6 +16,3 @@ primes :: Int -> [Int]
 primes cap = sieve [2..cap]
     where sieve (x:xs) = x : (sieve $ filter (not.(factor x)) xs)
           sieve [] = []
-
-factor :: Int -> Int -> Bool
-x `factor` n = n `mod` x == 0
