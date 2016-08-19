@@ -5,7 +5,7 @@ module LibTests
 
 import Test.HUnit
 
-import Lib (factor, fibs)
+import Lib (factor, fibs, primes)
 
 
 testFactor :: Test
@@ -20,5 +20,9 @@ testFibs :: Test
 testFibs = TestCase $ do
   assertEqual "first 10 fibonaci nummbers" [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] (take 10 fibs)
 
+testPrimes :: Test
+testPrimes = TestCase $ do
+  assertEqual "prime numbers less than 30" [2, 3, 5, 7, 11, 13, 17, 19, 23, 29] (primes 30)
 
-libTests = TestList [testFactor, testFibs]
+
+libTests = TestList [testFactor, testFibs, testPrimes]

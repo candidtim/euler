@@ -3,7 +3,7 @@ module Problem3
     , primes
     ) where
 
-import Lib (factor)
+import Lib (factor, primes)
 
 solveProblem3 :: Int
 solveProblem3 =
@@ -11,8 +11,3 @@ solveProblem3 =
     let n = 600851475143
         cap = ceiling.sqrt.fromIntegral $ n
     in  last $ filter (`factor` n) $ primes cap
-
-primes :: Int -> [Int]
-primes cap = sieve [2..cap]
-    where sieve (x:xs) = x : (sieve $ filter (not.(factor x)) xs)
-          sieve [] = []
