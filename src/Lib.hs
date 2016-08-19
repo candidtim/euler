@@ -2,6 +2,8 @@ module Lib
     ( factor
     , fibs
     , primes
+    , arithmeticProgressionSum
+    , squareNumbersSum
     ) where
 
 
@@ -21,3 +23,14 @@ primes :: Int -> [Int]
 primes cap = sieve [2..cap]
     where sieve (x:xs) = x : (sieve $ filter (not.(factor x)) xs)
           sieve [] = []
+
+
+-- |Sum of the arithmetic progression a1..an with n members
+arithmeticProgressionSum :: Int -> Int -> Int -> Int
+arithmeticProgressionSum a1 an n = (a1+an)*n `div` 2
+
+
+-- |Sum of the sequnce of squares of natural numbers from 0 to n
+-- 1^2 + 2^2 + ... + n^2
+squareNumbersSum :: Int -> Int
+squareNumbersSum n = n * (n+1) * (2*n+1) `div` 6
