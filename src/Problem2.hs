@@ -2,6 +2,8 @@ module Problem2
     ( solveProblem2
     ) where
 
+import Lib (fibs)
+
 solveProblem2 :: Int
 -- solveProblem2 = fibsum 1 2 4000000
 solveProblem2 = fibsum' 4000000
@@ -15,9 +17,6 @@ fibsum prev next cap
     where evenOr0 n = if even n then n else 0
 
 -- solution 2
-
-fibs :: [Int]
-fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 fibsum' :: Int -> Int
 fibsum' cap = sum $ filter even $ takeWhile (<cap) fibs

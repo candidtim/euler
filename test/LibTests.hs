@@ -5,7 +5,7 @@ module LibTests
 
 import Test.HUnit
 
-import Lib
+import Lib (factor, fibs)
 
 
 testFactor :: Test
@@ -16,4 +16,9 @@ testFactor = TestCase $ do
   assertBool "4 is not factor of 9" (not (4 `factor` 9))
 
 
-libTests = TestList [testFactor]
+testFibs :: Test
+testFibs = TestCase $ do
+  assertEqual "first 10 fibonaci nummbers" [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] (take 10 fibs)
+
+
+libTests = TestList [testFactor, testFibs]
