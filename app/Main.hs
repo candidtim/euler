@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import Problem9
+import Problem10
 
 main :: IO ()
-main = putStrLn $ show $ product $ pythagorianTriplet' 1000
+main = putStrLn $ show $ sumPrimes 2000000
