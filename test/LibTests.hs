@@ -5,7 +5,7 @@ module LibTests
 
 import Test.HUnit
 
-import Lib (factor, fibs, primes, arithmeticProgressionSum, squareNumbersSum)
+import Lib
 
 
 testFactor :: Test
@@ -35,5 +35,22 @@ testSquareNumbersSequenceSum = TestCase $ do
   assertEqual "sum of 1^2 2^2 3^2" 14 (squareNumbersSum 3)
   assertEqual "sum of squares up to 10" 385 (squareNumbersSum 10)
 
+testDigits :: Test
+testDigits = TestCase $ do
+  assertEqual "digits of 0" [0] (digits 0)
+  assertEqual "digits of 1" [1] (digits 1)
+  assertEqual "digits of 248" [2,4,8] (digits 248)
 
-libTests = TestList [testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum]
+testNumber :: Test
+testNumber = TestCase $ do
+  assertEqual "number of [0]" 0 (number [0])
+  assertEqual "number of [1]" 1 (number [1])
+  assertEqual "number of [3,5,7]" 357 (number [3,5,7])
+
+testNumberFromDigits :: Test
+testNumberFromDigits = TestCase $ do
+  assertEqual "123 to digits and back" 123 (number.digits $ 123)
+
+
+libTests = TestList [testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
+                     testDigits, testNumber, testNumberFromDigits]

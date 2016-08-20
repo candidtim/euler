@@ -7,7 +7,7 @@ module Problem4
 
 
 import Data.List as List
-
+import Lib (digits, number)
 
 solveProblem4 :: Int -> Int
 solveProblem4 n =
@@ -16,14 +16,3 @@ solveProblem4 n =
 
 palindrome :: Int -> Bool
 palindrome n = (number.reverse.digits $ n) == n
-
-digits :: Int -> [Int]
-digits 0 = [0]
-digits n = digits' n []
-  where digits' 0 xs = xs
-        digits' n xs = digits' (n `div` 10) (n `mod` 10 : xs)
-
-number :: [Int] -> Int
-number xs = number' xs 0
-  where number' [] n = n
-        number' (x:xs) n = number' xs (n*10+x)
