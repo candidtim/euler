@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import Problem7
+import Problem8
 
 main :: IO ()
-main = putStrLn $ show $ nthPrime 10001
+main = putStrLn $ show $ largestProduct 13

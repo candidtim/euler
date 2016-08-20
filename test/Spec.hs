@@ -5,7 +5,8 @@ import Problem1Tests
 import Problem4Tests
 import Problem5Tests
 import Problem6Tests
+import Problem8Tests
 
 
 main :: IO Counts
-main = runTestTT $ TestList [libTests, problem1Tests, problem4Tests, problem5Tests, problem6Tests]
+main = runTestTT $ TestList [libTests, problem1Tests, problem4Tests, problem5Tests, problem6Tests, problem8Tests]
