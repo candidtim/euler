@@ -5,4 +5,4 @@ import Problem11
 
 
 main :: IO ()
-main = putStrLn $ show $ largestProductInGrid
+main = putStrLn $ show $ maxProductInMatrix

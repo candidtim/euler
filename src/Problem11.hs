@@ -1,7 +1,8 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Problem11
-  ( largestProductInGrid
-  , maxProductInRow
-  , columns
+  ( maxProductInMatrix
+  , maxProductInList
   , diagonals
 
   , cutFirstColumn
@@ -10,6 +11,14 @@ module Problem11
 
 
 import Data.List as L
+
+import Lib (slices)
+
+
+type SliceProduct = (Int, [Int])
+-- further relying on `Ord a => (a,a)` being an instance
+-- of `Ord` as well (compared by first element first)
+
 
 n = 4
 
@@ -37,31 +46,25 @@ matrix = [
   [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]]
 
 
-largestProductInGrid :: Int
-largestProductInGrid =
-  let allSeies = matrix ++ (columns matrix) ++ (diagonals matrix)
-      maximumsInSeries = map maxProductInRow allSeies
+maxProductInMatrix :: (Int, [Int])
+maxProductInMatrix =
+  let allSeies = matrix ++ (L.transpose matrix) ++ (diagonals matrix)
+      maximumsInSeries = map maxProductInList allSeies
    in L.maximum maximumsInSeries
 
 
-columns :: [[Int]] -> [[Int]]
-columns xss = foldl appendRow (map (\x -> [x]) (head xss)) (tail xss)
-  where appendRow :: [[Int]] -> [Int] -> [[Int]]
-        appendRow cols row = map (\(xs, x) -> xs ++ [x]) (zip cols row)
-
-
 diagonals :: [[Int]] -> [[Int]]
-diagonals [] = [[]]
+diagonals [] = []
 diagonals (xs:xss) = (diagsFromUpperHalf (xs:xss)) ++ diagonals xss
  where diagsFromUpperHalf :: [[Int]] -> [[Int]]
        diagsFromUpperHalf xss = let upperHalf = upperRightHalf xss
-                                    allDiags = columns upperHalf
-                                 in filter (\xs -> length xs >= n) allDiags
+                                    allDiags = L.transpose upperHalf
+                                 in filter ((n<=).length) allDiags
 
 -- |Cuts the matrix diagonally from (0,0) and produces its upper "half"
--- 1 2 3       1 2 3
--- 4 5 6   =>    5 6
--- 7 8 9           9
+-- 1 2 3       1 2 3                    1 2 3
+-- 4 5 6   =>    5 6  which is in fact  5 6
+-- 7 8 9           9                    9
 upperRightHalf :: [[Int]] -> [[Int]]
 upperRightHalf [xs] = [xs]
 upperRightHalf (xs:xss) = xs : upperRightHalf (cutFirstColumn xss)
@@ -74,14 +77,8 @@ cutFirstColumn :: [[Int]] -> [[Int]]
 cutFirstColumn xss = map tail xss
 
 
-maxProductInRow :: [Int] -> Int
-maxProductInRow xs =
-  let slices = slice xs n
-      products = map product slices
+maxProductInList :: [Int] -> SliceProduct
+maxProductInList xs =
+  let xss::[[Int]] = slices xs n
+      products::[SliceProduct] = map (\xs -> (product xs, xs)) xss
    in L.maximum products
-
-
-slice :: Num a => [a] -> Int -> [[a]]
-slice xs size
-  | length xs > size = (take size xs) : slice (drop 1 xs) size
-  | otherwise = [xs]

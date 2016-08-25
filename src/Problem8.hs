@@ -5,7 +5,7 @@ module Problem8
 
 import Data.List (maximum)
 
-import Lib
+import Lib (digits, slices)
 
 
 number1000 :: Integer
@@ -15,10 +15,5 @@ digits1000 = digits number1000
 
 largestProduct :: Int -> Integer
 largestProduct n =
-  let slices = slice digits1000 n
-   in maximum $ map product slices
-
-slice :: [Integer] -> Int -> [[Integer]]
-slice xs n
-  | length xs > n = (take n xs) : slice (drop 1 xs) n
-  | otherwise = [xs]
+  let xss = slices digits1000 n
+   in maximum $ map product xss

@@ -6,7 +6,11 @@ module Lib
     , squareNumbersSum
     , digits
     , number
+    , slices
     ) where
+
+
+import Data.List as L
 
 
 -- |Predicate to verify if first argument is a factor of a second one
@@ -53,3 +57,11 @@ number :: Integral a => [a] -> a
 number xs = number' xs 0
   where number' [] n = n
         number' (x:xs) n = number' xs (n*10+x)
+
+
+-- |Create slices of given size out a list
+-- slice [1,2,3,4] 2 == [ [1,2], [2,3], [3,4] ]
+slices :: [a] -> Int -> [[a]]
+slices xs size
+  | length xs > size = (take size xs) : slices (drop 1 xs) size
+  | otherwise = [xs]

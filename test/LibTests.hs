@@ -51,6 +51,10 @@ testNumberFromDigits :: Test
 testNumberFromDigits = TestCase $ do
   assertEqual "123 to digits and back" 123 (number.digits $ 123)
 
+testSlices :: Test
+testSlices = TestCase $ do
+  assertEqual "slices of size 2 of list of 4" [ [1,2], [2,3], [3,4] ] (slices [1,2,3,4] 2)
+
 
 libTests = TestList [testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
-                     testDigits, testNumber, testNumberFromDigits]
+                     testDigits, testNumber, testNumberFromDigits, testSlices]
