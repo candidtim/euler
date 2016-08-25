@@ -3,8 +3,8 @@
 module Problem11
   ( maxProductInMatrix
   , maxProductInList
-  , diagonals
-
+  , diagonalsLR
+  , diagonalsRL
   , cutFirstColumn
   , upperRightHalf
   ) where
@@ -48,18 +48,21 @@ matrix = [
 
 maxProductInMatrix :: (Int, [Int])
 maxProductInMatrix =
-  let allSeies = matrix ++ (L.transpose matrix) ++ (diagonals matrix)
+  let allSeies = matrix ++ (L.transpose matrix) ++ (diagonalsLR matrix) ++ (diagonalsRL matrix)
       maximumsInSeries = map maxProductInList allSeies
    in L.maximum maximumsInSeries
 
 
-diagonals :: [[Int]] -> [[Int]]
-diagonals [] = []
-diagonals (xs:xss) = (diagsFromUpperHalf (xs:xss)) ++ diagonals xss
+diagonalsLR :: [[Int]] -> [[Int]]
+diagonalsLR [] = []
+diagonalsLR (xs:xss) = (diagsFromUpperHalf (xs:xss)) ++ diagonalsLR xss
  where diagsFromUpperHalf :: [[Int]] -> [[Int]]
        diagsFromUpperHalf xss = let upperHalf = upperRightHalf xss
                                     allDiags = L.transpose upperHalf
                                  in filter ((n<=).length) allDiags
+
+diagonalsRL :: [[Int]] -> [[Int]]
+diagonalsRL xss = diagonalsLR $ map L.reverse xss
 
 -- |Cuts the matrix diagonally from (0,0) and produces its upper "half"
 -- 1 2 3       1 2 3                    1 2 3

@@ -40,7 +40,7 @@ testMaxProductInRow = TestCase $ do
 
 testDiagonals :: Test
 testDiagonals = TestCase $ do
-  assertEqual "digonals from matrix" expectedDiagonals (diagonals matrix)
+  assertEqual "digonals from matrix" expectedDiagonals (diagonalsLR matrix)
 
 testCutFirstColumn :: Test
 testCutFirstColumn = TestCase $ do
