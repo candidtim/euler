@@ -2,11 +2,13 @@ module Lib
     ( factor
     , fibs
     , primes
+    , triangulars
     , arithmeticProgressionSum
     , squareNumbersSum
     , digits
     , number
     , slices
+    , divisors
     ) where
 
 
@@ -29,6 +31,11 @@ primes :: Int -> [Int]
 primes cap = sieve [2..cap]
     where sieve (x:xs) = x : (sieve $ filter (not.(factor x)) xs)
           sieve [] = []
+
+
+-- |Triangular numbers infinite sequence
+triangulars :: [Int]
+triangulars = [ sum [1..n] | n <- [1..] ]
 
 
 -- |Sum of the arithmetic progression a1..an with n members
@@ -65,3 +72,12 @@ slices :: [a] -> Int -> [[a]]
 slices xs size
   | length xs > size = (take size xs) : slices (drop 1 xs) size
   | otherwise = [xs]
+
+
+-- | Divisors of a number
+-- uses trial division
+divisors :: Int -> [Int]
+divisors n =
+  let cap = ceiling.sqrt.fromIntegral $ n
+      xs = filter (`factor` n) [1..cap]
+   in L.sort $ L.nub $ map (n `div`) xs ++ xs

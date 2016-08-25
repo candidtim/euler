@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem11
+import Problem12
 
 
 main :: IO ()
-main = putStrLn $ show $ maxProductInMatrix
+main = putStrLn $ show $ divisibleTriangularNumber 501

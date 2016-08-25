@@ -23,6 +23,10 @@ testPrimes :: Test
 testPrimes = TestCase $ do
   assertEqual "prime numbers less than 30" [2, 3, 5, 7, 11, 13, 17, 19, 23, 29] (primes 30)
 
+testTriangulars :: Test
+testTriangulars = TestCase $ do
+  assertEqual "first 7 triangular numbers" [1, 3, 6, 10, 15, 21, 28] (take 7 triangulars)
+
 testArithmeticProgressionSum :: Test
 testArithmeticProgressionSum = TestCase $ do
   assertEqual "sum or AP 1..10 with step 1" 55 (arithmeticProgressionSum 1 10 10)
@@ -55,6 +59,10 @@ testSlices :: Test
 testSlices = TestCase $ do
   assertEqual "slices of size 2 of list of 4" [ [1,2], [2,3], [3,4] ] (slices [1,2,3,4] 2)
 
+testDivisors :: Test
+testDivisors = TestCase $ do
+  assertEqual "divisors of 28" [1, 2, 4, 7, 14, 28] (divisors 28)
 
-libTests = TestList [testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
-                     testDigits, testNumber, testNumberFromDigits, testSlices]
+
+libTests = TestList [ testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
+                      testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testDivisors ]
