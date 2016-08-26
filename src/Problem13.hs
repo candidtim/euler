@@ -1,6 +1,7 @@
 module Problem13
   ( numbers100
   , sum100numbers
+  , columnarAddition
   ) where
 
 
@@ -112,15 +113,15 @@ numbers100 = [ 37107287533902102798797998220837590246510135740250
              , 53503534226472524250874054075591789781264330331690 ]
 
 
-sum100numbers = sum' numbers100
+sum100numbers = columnarAddition numbers100
 
 
-sum' :: [Integer] -> Integer
-sum' numbers =
+columnarAddition :: [Integer] -> Integer
+columnarAddition numbers =
   let numbersAsDigits = map digits numbers
       columns = L.transpose $ map L.reverse numbersAsDigits
       (sumDigits, carryOver) = foldl sumColumns ([], 0) columns
-   in number $ digits carryOver ++ L.reverse sumDigits
+   in number $ digits carryOver ++ sumDigits
   where sumColumns :: ([Integer], Integer) -> [Integer] -> ([Integer], Integer)
         sumColumns (sumDigits,carryOver) nextDigits =
           let nextSum = (sum nextDigits) + carryOver
