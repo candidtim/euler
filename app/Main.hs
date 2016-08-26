@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem13
+import Problem14
 
 
 main :: IO ()
-main = putStrLn $ show $ sum100numbers
+main = putStrLn $ show $ longestCollatz 1000000
