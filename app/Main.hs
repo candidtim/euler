@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem12
+import Problem16
 
 
 main :: IO ()
-main = putStrLn $ show $ divisibleTriangularNumber 501
+main = putStrLn $ show $ powerDigitSum 2 1000
