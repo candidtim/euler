@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem17
+import Problem15
 
 
 main :: IO ()
-main = putStrLn $ show $ lettersInNumbersUpTo 1000
+main = putStrLn $ show $ latticePaths 20

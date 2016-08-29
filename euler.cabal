@@ -30,6 +30,7 @@ library
                      , Problem12
                      , Problem13
                      , Problem14
+                     , Problem15
                      , Problem16
                      , Problem17
   build-depends:       base >= 4.7 && < 5
