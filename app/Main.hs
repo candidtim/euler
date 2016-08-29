@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem16
+import Problem17
 
 
 main :: IO ()
-main = putStrLn $ show $ powerDigitSum 2 1000
+main = putStrLn $ show $ lettersInNumbersUpTo 1000

@@ -9,8 +9,9 @@ import Problem8Tests
 import Problem11Tests
 import Problem12Tests
 import Problem13Tests
+import Problem17Tests
 
 
 main :: IO Counts
 main = runTestTT $ TestList [ libTests, problem1Tests, problem4Tests, problem5Tests, problem6Tests, problem8Tests
-                            , problem11Tests, problem12Tests , problem13Tests ]
+                            , problem11Tests, problem12Tests, problem13Tests, problem17Tests ]
