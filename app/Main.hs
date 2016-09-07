@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem15
+import Problem18
 
 
 main :: IO ()
-main = putStrLn $ show $ latticePaths 20
+main = putStrLn $ show $ maxTrianglePathSum bigTriangle
