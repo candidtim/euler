@@ -3,6 +3,7 @@ module Lib
     , fibs
     , primes
     , triangulars
+    , factorials
     , arithmeticProgressionSum
     , squareNumbersSum
     , digits
@@ -36,6 +37,11 @@ primes cap = sieve [2..cap]
 -- |Triangular numbers infinite sequence
 triangulars :: [Int]
 triangulars = [ sum [1..n] | n <- [1..] ]
+
+
+-- |Factorials
+factorials :: [Integer]
+factorials = [ product [1..n] | n <- [1..] ]
 
 
 -- |Sum of the arithmetic progression a1..an with n members

@@ -27,6 +27,10 @@ testTriangulars :: Test
 testTriangulars = TestCase $ do
   assertEqual "first 7 triangular numbers" [1, 3, 6, 10, 15, 21, 28] (take 7 triangulars)
 
+testFactorials :: Test
+testFactorials = TestCase $ do
+  assertEqual "first 7 factorials" [1, 2, 6, 24, 120, 720, 5040] (take 7 factorials)
+
 testArithmeticProgressionSum :: Test
 testArithmeticProgressionSum = TestCase $ do
   assertEqual "sum or AP 1..10 with step 1" 55 (arithmeticProgressionSum 1 10 10)
@@ -65,4 +69,5 @@ testDivisors = TestCase $ do
 
 
 libTests = TestList [ testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
-                      testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testDivisors ]
+                      testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testFactorials,
+                      testDivisors ]
