@@ -1,5 +1,6 @@
 module Problem18
   ( maxTrianglePathSum
+  , maxTrianglePathSum'
   , leftSubTriangle
   , rightSubTriangle
   , weight
@@ -24,23 +25,38 @@ bigTriangle = [ [ 75 ]
               , [ 63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31 ]
               , [ 04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23 ] ]
 
-maxTrianglePathSum :: [[Int]] -> Int
-maxTrianglePathSum [] = 0
-maxTrianglePathSum xss =
+
+maxTrianglePathSum :: [[Int]] -> (Int, [Int])
+maxTrianglePathSum [] = (0, [])
+maxTrianglePathSum xss@(xs:_) =
+  let left = leftSubTriangle xss
+      right = rightSubTriangle xss
+      elem = head xs
+      (subElem, subPath) = max (maxTrianglePathSum left) (maxTrianglePathSum right)
+   in (elem + subElem, elem : subPath)
+
+
+maxTrianglePathSum' :: [[Int]] -> (Int, [Int])
+maxTrianglePathSum' [] = (0, [])
+maxTrianglePathSum' xss =
   let left = leftSubTriangle xss
       right = rightSubTriangle xss
       leftWeight = weight left
       rightWeight = weight right
       sub = if leftWeight > rightWeight then left else right
-   in (head.head $ xss) + maxTrianglePathSum sub
+      (subElem, subPath) = maxTrianglePathSum' sub
+      elem = head.head $ xss
+   in (elem + subElem, elem : subPath)
+   -- in (head.head $ xss) + maxTrianglePathSum' sub
+
+-- |Weight of a triangle is sum of all of its items
+weight :: [[Int]] -> Int
+weight xss = foldl addRow 0 xss
+  where addRow acc row = acc + sum row
+
 
 leftSubTriangle :: [[Int]] -> [[Int]]
 leftSubTriangle xss = map init $ tail xss
 
 rightSubTriangle :: [[Int]] -> [[Int]]
 rightSubTriangle xss = map tail $ tail xss
-
--- |Weight of a triangle is sum of all of its items
-weight :: [[Int]] -> Int
-weight xss = foldl addRow 0 xss
-  where addRow acc row = acc + sum row

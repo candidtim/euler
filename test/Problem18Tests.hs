@@ -36,7 +36,7 @@ testWeight = TestCase $ do
 
 testMaxPathSum :: Test
 testMaxPathSum = TestCase $ do
-  assertEqual "max path sum" 23 (maxTrianglePathSum sampleTriangle)
+  assertEqual "max path sum" (23, [3, 7, 4, 9]) (maxTrianglePathSum sampleTriangle)
 
 
 problem18Tests = TestList [ testLeftSubTriangle, testRightSubTriangle, testWeight, testMaxPathSum ]
