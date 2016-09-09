@@ -10,6 +10,8 @@ module Lib
     , number
     , slices
     , divisors
+    , properDivisors
+    , perfect
     ) where
 
 
@@ -80,10 +82,23 @@ slices xs size
   | otherwise = [xs]
 
 
--- | Divisors of a number
+-- |Divisors of a number
 -- uses trial division
 divisors :: Int -> [Int]
 divisors n =
   let cap = ceiling.sqrt.fromIntegral $ n
       xs = filter (`factor` n) [1..cap]
    in L.sort $ L.nub $ map (n `div`) xs ++ xs
+
+
+-- |Proper divisors of a number
+-- (same as divisors but excludinng the number itself)
+properDivisors :: Int -> [Int]
+properDivisors = init' . divisors
+  where init' [] = []
+        init' xs = init xs
+
+
+-- |Predicate to verify if given number is perfect
+perfect :: Int -> Bool
+perfect n = ( sum . properDivisors $ n) == n

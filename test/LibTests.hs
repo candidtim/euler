@@ -67,7 +67,15 @@ testDivisors :: Test
 testDivisors = TestCase $ do
   assertEqual "divisors of 28" [1, 2, 4, 7, 14, 28] (divisors 28)
 
+testProperDivisors :: Test
+testProperDivisors = TestCase $ do
+  assertEqual "proper divisors of 28" [1, 2, 4, 7, 14] (properDivisors 28)
+
+testPerfect :: Test
+testPerfect = TestCase $ do
+  assertBool "496 is a perfect number" (perfect 496)
+  assertBool "123 is not a perfect number" (not.perfect $ 123)
 
 libTests = TestList [ testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
                       testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testFactorials,
-                      testDivisors ]
+                      testDivisors , testProperDivisors, testPerfect ]
