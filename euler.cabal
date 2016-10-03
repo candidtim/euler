@@ -34,6 +34,7 @@ library
                      , Problem16
                      , Problem17
                      , Problem18
+                     , Problem19
                      , Problem20
                      , Problem21
   build-depends:       base >= 4.7 && < 5

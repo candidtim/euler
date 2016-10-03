@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem21
+import Problem19
 
 
 main :: IO ()
-main = putStrLn $ show $ sumAmicables 10000
+main = putStrLn $ show $ countSundaysOnFirst
