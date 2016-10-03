@@ -2,6 +2,7 @@ module Problem19
   ( countSundaysOnFirst
   , addDays
   , nextDay
+  , nextWeek
   , leap
   ) where
 
@@ -26,7 +27,14 @@ dec = 12
 
 
 countSundaysOnFirst :: Int
-countSundaysOnFirst = 0
+countSundaysOnFirst =
+  let someSunday = (31, 12, 1899)
+      sundays = iterate nextWeek someSunday
+      sundays20thCentury = dropWhile (\(_,_,y) -> y < 1901) $ takeWhile (\(_,_,y) -> y <= 2000) sundays
+      sundaysOnFirst = filter (\(d,_,_) -> d == 1) sundays20thCentury
+   in length sundaysOnFirst
+
+nextWeek = flip addDays $ 7
 
 addDays :: Date -> Int -> Date
 addDays date days = iterate nextDay date !! days
