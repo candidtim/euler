@@ -37,6 +37,7 @@ library
                      , Problem19
                      , Problem20
                      , Problem21
+                     , Problem22
   build-depends:       base >= 4.7 && < 5
                      , containers
   default-language:    Haskell2010

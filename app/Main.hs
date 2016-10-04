@@ -1,8 +1,10 @@
 module Main where
 
 import Lib
-import Problem19
+import Problem22
 
 
 main :: IO ()
-main = putStrLn $ show $ countSundaysOnFirst
+main = do
+  names <- namesFromFile "res/p022_names.txt"
+  putStrLn . show $ sumNamesScores names

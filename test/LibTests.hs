@@ -4,6 +4,7 @@ module LibTests
 
 
 import Test.HUnit
+import Data.Char as Char
 
 import Lib
 
@@ -76,6 +77,11 @@ testPerfect = TestCase $ do
   assertBool "496 is a perfect number" (perfect 496)
   assertBool "123 is not a perfect number" (not.perfect $ 123)
 
+testWords' :: Test
+testWords' = TestCase $ do
+  assertEqual "words' as words" ["these", "are", "words"] (words' Char.isSpace "these are\twords")
+  assertEqual "words' by commas" ["some", "CSV", "header"] (words' (==',') "some,CSV,header")
+
 libTests = TestList [ testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
                       testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testFactorials,
-                      testDivisors , testProperDivisors, testPerfect ]
+                      testDivisors , testProperDivisors, testPerfect, testWords' ]

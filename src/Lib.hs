@@ -12,6 +12,7 @@ module Lib
     , divisors
     , properDivisors
     , perfect
+    , words'
     ) where
 
 
@@ -102,3 +103,12 @@ properDivisors = init' . divisors
 -- |Predicate to verify if given number is perfect
 perfect :: Int -> Bool
 perfect n = ( sum . properDivisors $ n) == n
+
+
+-- |Same as `words` but using custom predicate to determine start of new word
+-- Derived from `Data.List.words` implementation
+words' :: (Char -> Bool) -> String -> [String]
+words' p s =  case dropWhile p s of
+                   "" -> []
+                   s' -> w : words' p s''
+                         where (w, s'') = break p s'
