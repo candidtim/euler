@@ -76,6 +76,19 @@ testPerfect :: Test
 testPerfect = TestCase $ do
   assertBool "496 is a perfect number" (perfect 496)
   assertBool "123 is not a perfect number" (not.perfect $ 123)
+  assertBool "12 is not a perfect number" (not.perfect $ 12)
+
+testAbundant :: Test
+testAbundant = TestCase $ do
+  assertBool "12 is abundant" (abundant 12)
+  assertBool "496 is not abundant" (not.abundant $ 496)
+  assertBool "16 is not abundant" (not.abundant $ 16)
+
+testDeficient :: Test
+testDeficient = TestCase $ do
+  assertBool "16 is deficient" (deficient 16)
+  assertBool "496 is not deficient" (not.deficient $ 496)
+  assertBool "12 is not deficient" (not.deficient $ 12)
 
 testWords' :: Test
 testWords' = TestCase $ do
@@ -84,4 +97,4 @@ testWords' = TestCase $ do
 
 libTests = TestList [ testFactor, testFibs, testPrimes, testArithmeticProgressionSum, testSquareNumbersSequenceSum,
                       testDigits, testNumber, testNumberFromDigits, testSlices, testTriangulars, testFactorials,
-                      testDivisors , testProperDivisors, testPerfect, testWords' ]
+                      testDivisors , testProperDivisors, testPerfect, testAbundant, testDeficient, testWords' ]

@@ -12,6 +12,8 @@ module Lib
     , divisors
     , properDivisors
     , perfect
+    , abundant
+    , deficient
     , words'
     ) where
 
@@ -102,7 +104,17 @@ properDivisors = init' . divisors
 
 -- |Predicate to verify if given number is perfect
 perfect :: Int -> Bool
-perfect n = ( sum . properDivisors $ n) == n
+perfect n = (sum . properDivisors $ n) == n
+
+
+-- |Predicate to verify if given number is abundant
+abundant :: Int -> Bool
+abundant n = (sum . properDivisors $ n) > n
+
+
+-- |Predicate to verify if given number is deficient
+deficient :: Int -> Bool
+deficient n = (sum . properDivisors $ n) < n
 
 
 -- |Same as `words` but using custom predicate to determine start of new word
