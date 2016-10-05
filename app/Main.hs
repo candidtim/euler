@@ -1,8 +1,8 @@
 module Main where
 
 import Lib
-import Problem23
+import Problem24
 
 
 main :: IO ()
-main = putStrLn . show $ sum nonTwoAbundantAddendsNumbers
+main = putStrLn . show $ lexicographicPermutation 1000000
