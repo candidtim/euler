@@ -28,7 +28,7 @@ x `factor` n = n `mod` x == 0
 
 
 -- |Fibonaci inifinite sequence
-fibs :: [Int]
+fibs :: Integral a => [a]
 fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 
