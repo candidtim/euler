@@ -15,10 +15,12 @@ module Lib
     , abundant
     , deficient
     , words'
+    , shuffle
     ) where
 
 
 import Data.List as L
+import System.Random as Random
 
 
 -- |Predicate to verify if first argument is a factor of a second one
@@ -124,3 +126,13 @@ words' p s =  case dropWhile p s of
                    "" -> []
                    s' -> w : words' p s''
                          where (w, s'') = break p s'
+
+
+-- |Shuffle randomly a list of items given number of times
+shuffle :: Random.RandomGen g => g -> [a] -> Int -> ([a], g)
+shuffle g xs n = (iterate splitOnce (xs, g)) !! n
+  where splitOnce :: Random.RandomGen g => ([a], g) -> ([a], g)
+        splitOnce (xs, g) = let (i, g') = Random.randomR (1, length xs) g
+                                (inits, tails) = L.splitAt i xs
+                                xs' = tails ++ inits
+                             in (xs', g')

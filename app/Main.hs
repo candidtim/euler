@@ -1,8 +1,12 @@
 module Main where
 
+import System.Random
+
 import Lib
-import Problem25
+import Problem84
 
 
 main :: IO ()
-main = putStrLn . show $ fibIdxWithNDigits 1000
+main = do
+  g <- getStdGen
+  putStrLn . show $ monopolyOddsToken g 100000
